@@ -9,6 +9,7 @@ using EloBuddy.SDK;
 using EloBuddy.SDK.Rendering;
 using EloBuddy.SDK.Menu;
 using EloBuddy.SDK.Menu.Values;
+using TheShadow;
 using Color = System.Drawing.Color;
 namespace TheShadow
 {

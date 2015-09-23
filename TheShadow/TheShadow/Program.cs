@@ -26,7 +26,8 @@ namespace TheShadow
         public static Spell.Skillshot _E;
         public static Spell.Targeted _R;
         public static Spell.Active _Flash;
-
+        public static Obj_AI_Base sender;
+        public static Obj_AI_BaseBuffGainEventArgs buff;
         public static float myMana;
         public static Vector3 mousePos { get { return Game.CursorPos; } }
         static void Main(string[] args)
