@@ -16,9 +16,9 @@ namespace TheShadow
     {
         public static void Combo()
         {
-            var target = TargetSelector.GetTarget(1000, EloBuddy.DamageType.Physical);
+            var target = TargetSelector.GetTarget(MainShadow._R.Range + 50, EloBuddy.DamageType.Physical);
             if (MainShadow.ComboMenu["fullcombo"].Cast<CheckBox>().CurrentValue == true && MainShadow._Q.IsReady() &&
-                MainShadow._W.IsReady() && MainShadow._E.IsReady() && MainShadow._R.IsReady())
+                MainShadow._W.IsReady() && MainShadow._E.IsReady() && MainShadow._R.IsReady() && target.IsValid && !target.IsDead)
             {
                 if (MainShadow.ComboMenu["useR"].Cast<CheckBox>().CurrentValue == true &&
                     MainShadow._R.IsInRange(target))
@@ -68,22 +68,15 @@ namespace TheShadow
 
         public static void Harass()
         {
-            bool wUsed = false;
-            var target = TargetSelector.GetTarget(1000, EloBuddy.DamageType.Physical);
+            var target = TargetSelector.GetTarget(MainShadow._Q.Range + 50, EloBuddy.DamageType.Physical);
 
             if (target.IsValid && !target.IsDead)
             {
                 if (MainShadow.HarassMenu["hUseW"].Cast<CheckBox>().CurrentValue == true)
                 {
-                    if (MainShadow.sender.IsMe && MainShadow.buff.Buff.DisplayName == "Living Shadow")
-                        wUsed = true;
-                    else
-                        wUsed = false;
-
-                    if (MainShadow._W.IsInRange(target) && wUsed == false)
+                    if (MainShadow._W.IsInRange(target))
                     {
                         MainShadow._W.Cast(target);
-                        wUsed = true;
                     }
                 }
 
@@ -111,8 +104,6 @@ namespace TheShadow
         {
             if (MainShadow._W.IsReady())
                 MainShadow._W.Cast(MainShadow.mousePos);
-            else
-                Player.IssueOrder(GameObjectOrder.MoveTo, Game.CursorPos);
         }
 
     /*static public void WaveClear()
@@ -160,5 +151,6 @@ namespace TheShadow
                 MainShadow._E.Cast(source);
             }
         }*/
+
     }
 }

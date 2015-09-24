@@ -85,13 +85,8 @@ namespace TheShadow
 
             if (RLvl == 3)
                 RDmgCalc = RDmgCalc + (50 / 100) * (RDmgCalc + QDmgCalc + EDmgCalc + WDmgCalc);
-
-
-            float totalDamageDeal;
-
             WDmgCalc = QDmgCalc + EDmgCalc;
-            totalDamageDeal = QDmgCalc + EDmgCalc + RDmgCalc + WDmgCalc;
-            return totalDamageDeal;
+            return QDmgCalc + EDmgCalc + RDmgCalc + WDmgCalc;
         }
     }
 }

@@ -54,13 +54,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EloBuddy">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\EB\System\EloBuddy.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\EloBuddy\System\EloBuddy.dll</HintPath>
     </Reference>
     <Reference Include="EloBuddy.SDK">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\EB\System\EloBuddy.SDK.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\EloBuddy\System\EloBuddy.SDK.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\EB\System\SharpDX.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\EloBuddy\System\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
