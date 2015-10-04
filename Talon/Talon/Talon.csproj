@@ -64,7 +64,6 @@
     <Compile Include="Draw.cs" />
     <Compile Include="Indicator.cs" />
     <Compile Include="Logic.cs" />
-    <Compile Include="ObjectManager_.cs" />
     <Compile Include="OrbManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
