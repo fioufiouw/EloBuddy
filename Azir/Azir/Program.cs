@@ -190,7 +190,6 @@ namespace Azir
                 Indicator.Update("Combo",
                     new SpellData((int) Damage.GetComboDamage(_Target), DamageType.Magical, Color.Lime));
             }
-
             OrbManager.ItemManager();
             OrbManager.KillSteal();
             OrbManager.AutoIgnite();

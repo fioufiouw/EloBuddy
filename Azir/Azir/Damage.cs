@@ -53,7 +53,7 @@ namespace Azir
 
             if (Program._Ignite != null && Program._Ignite.IsReady())
             {
-                damage += Program._Player.GetSummonerSpellDamage(target, DamageLibrary.SummonerSpells.Ignite);
+                damage += GetIgniteDamage(target);
             }
 
             damage += GetSoldierDamage(target);
@@ -168,6 +168,21 @@ namespace Azir
             damage += ((Program._Q.Level*20) + ((50f/100f)*AP));
 
             calcdamage = target.CalculateDamageOnUnit(target, DamageType.Magical, damage);
+            return calcdamage;
+        }
+
+        public static float GetIgniteDamage(Obj_AI_Base target)
+        {
+            var damage = 20f;
+            float calcdamage;
+
+            damage += (Program._Player.Level*20);
+
+            calcdamage = target.CalculateDamageOnUnit(target, DamageType.True, damage);
+
+            if (Program._Ignite == null || !Program._Ignite.IsReady())
+                calcdamage = 0;
+
             return calcdamage;
         }
     }

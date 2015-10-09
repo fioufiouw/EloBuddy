@@ -43,9 +43,8 @@ namespace Azir
                     {
                         if (Program._Ignite.IsInRange(_IgniteTarget))
                         {
-                            if (_IgniteTarget.Health >
-                                Program._Player.GetSummonerSpellDamage(_IgniteTarget,
-                                    DamageLibrary.SummonerSpells.Ignite))
+                            if (_IgniteTarget.Health <
+                                Damage.GetIgniteDamage(_IgniteTarget))
                             {
                                 Program._Ignite.Cast(_IgniteTarget);
                             }
@@ -73,8 +72,8 @@ namespace Azir
                 {
                     if (Program._Ignite.IsInRange(_Target))
                     {
-                        if (_IgniteTarget.Health >
-                            Program._Player.GetSummonerSpellDamage(_IgniteTarget, DamageLibrary.SummonerSpells.Ignite))
+                        if (_IgniteTarget.Health <
+                           Damage.GetIgniteDamage(_Target))
                         {
                             Program._Ignite.Cast(_IgniteTarget);
                         }
