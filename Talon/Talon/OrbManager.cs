@@ -139,7 +139,7 @@ namespace Talon
                 Program.LogicMenu["eUseHealthCheck"].Cast<CheckBox>().CurrentValue &&
                 Program.LogicMenu["eUseHealthSlider"].Cast<Slider>().CurrentValue < _Health)
             {
-                var targetminion = EntityManager.GetLaneMinions(EntityManager.UnitTeam.Enemy)
+                var targetminion = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy)
                     .OrderBy(m => m.Distance(Program._MousePos));
 
                 foreach (var minion in targetminion)
@@ -165,7 +165,7 @@ namespace Talon
             if (Program.FleeMenu["fUseE"].Cast<CheckBox>().CurrentValue &&
                 Program.LogicMenu["eUseHealthCheck"].Cast<CheckBox>().CurrentValue == false)
             {
-                var targetminion = EntityManager.GetLaneMinions(EntityManager.UnitTeam.Enemy)
+                var targetminion = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy)
                     .OrderBy(m => m.Distance(Program._MousePos));
 
                 foreach (var minion in targetminion)
@@ -197,7 +197,7 @@ namespace Talon
                     return;
                 Orbwalker.ForcedTarget = null;
 
-                var killableminions = EntityManager.GetLaneMinions(EntityManager.UnitTeam.Enemy)
+                var killableminions = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy)
                     .Where(m => m.Health < Program._Player.GetSpellDamage(m, SpellSlot.W)).ToList();
 
                 foreach (var minion in killableminions)
@@ -215,7 +215,7 @@ namespace Talon
                     return;
                 Orbwalker.ForcedTarget = null;
 
-                var killableminions2 = EntityManager.GetLaneMinions(EntityManager.UnitTeam.Enemy)
+                var killableminions2 = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy)
                     .Where(m => m.Health < Program._Player.GetSpellDamage(m, SpellSlot.Q)).ToList();
 
                 foreach (var minion in killableminions2)
@@ -353,10 +353,10 @@ namespace Talon
                 int _ChoiceW = 0;
                 int _ChoiceQ = 0;
 
-                var _EligibleMinionsW = EntityManager.GetLaneMinions(EntityManager.UnitTeam.Enemy)
+                var _EligibleMinionsW = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy)
                     .Where(m => m.Health < Program._Player.GetSpellDamage(m, SpellSlot.W)).ToList();
 
-                var _EligibleMinionsQ = EntityManager.GetLaneMinions(EntityManager.UnitTeam.Enemy)
+                var _EligibleMinionsQ = EntityManager.MinionsAndMonsters.GetLaneMinions(EntityManager.UnitTeam.Enemy)
                     .Where(m => m.Health < Program._Player.GetSpellDamage(m, SpellSlot.W)).ToList();
 
                 if (Orbwalker.IsAutoAttacking)
@@ -371,7 +371,7 @@ namespace Talon
                     {
                         if (Program._W.IsInRange(minion) && Program._W.IsReady())
                         {
-                            if (Orbwalker.CanBeLastHitted(minion))
+                            if (Orbwalker.LasthitableMinions.Contains(minion))
                             {
                                 _ChoiceW = 3;
                             }

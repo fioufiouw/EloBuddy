@@ -128,14 +128,13 @@ namespace Talon
             DrawMenu = Menu.AddSubMenu("::Draw Menu", "drawmenu");
 
             DrawMenu.AddGroupLabel("Draw Menu");
-            DrawMenu.Add("DrawQ"          , new CheckBox("Draw Q"));
             DrawMenu.Add("DrawW"          , new CheckBox("Draw W"));
             DrawMenu.Add("DrawE"          , new CheckBox("Draw E"));
             DrawMenu.Add("DrawR"          , new CheckBox("Draw R"));
             DrawMenu.Add("DrawComboCircle", new CheckBox("Draw Combo Circle"));
             DrawMenu.Add("DrawComboLine"  , new CheckBox("Draw Combo Line"));
             DrawMenu.Add("DrawHPBarCombo" , new CheckBox("Draw HP Bar Combo Damage"));
-            DrawMenu.Add("DrawText"       , new CheckBox("Draw Text Drawings"));
+            DrawMenu.Add("DrawText"       , new CheckBox("Draw Text Combo Ready"));
             DrawMenu.Add("DrawMana"       , new CheckBox("Draw Calculated Mana"));
             ItemMenu = Menu.AddSubMenu("::Item Menu", "itemmenu");
 
