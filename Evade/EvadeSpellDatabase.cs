@@ -525,6 +525,17 @@ namespace Evade
             }
 
             #endregion
+            
+            #region Yasuo
+
+            if (ObjectManager.Player.ChampionName == "Yasuo")
+            {
+                spell = new DashData("Yasuo E", SpellSlot.E, 475, true, 50, 2000, 2); //550 cast range?
+                spell.ValidTargets = new[] { SpellValidTargets.EnemyChampions, SpellValidTargets.EnemyMinions };
+                Spells.Add(spell);
+            }
+
+            #endregion
 
             #endregion
 
