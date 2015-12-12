@@ -59,7 +59,6 @@ namespace TheShadow
             ComboMenu.Add("useW", new CheckBox("Use W"));
             ComboMenu.Add("useE", new CheckBox("Use E"));
             ComboMenu.Add("useR", new CheckBox("Use R"));
-            ComboMenu.Add("fullcombo", new CheckBox("Only Cast Full Combo [recommended]"));
 
             DrawMenu = Menu.AddSubMenu("Drawings Menu", "drawingsmenu");
 
@@ -69,7 +68,7 @@ namespace TheShadow
             DrawMenu.Add("drawE", new CheckBox("Draw E"));
             DrawMenu.Add("drawR", new CheckBox("Draw R"));
             DrawMenu.Add("drawText", new CheckBox("Draw Text"));
-            DrawMenu.Add("drawFlash", new CheckBox("Draw Flash - Coming Soon"));
+            DrawMenu.Add("drawFlash", new CheckBox("Draw Flash"));
 
             HarassMenu = Menu.AddSubMenu("Harass Menu", "harassmenu");
 
@@ -80,13 +79,13 @@ namespace TheShadow
             
             FarmMenu = Menu.AddSubMenu("Farm Menu", "farmmenu");
 
-            FarmMenu.AddLabel("Wave Clear - Coming Soon");
+            FarmMenu.AddLabel("Wave Clear");
             FarmMenu.Add("fwUseQ", new CheckBox("Use Q"));
             FarmMenu.Add("fwUseE", new CheckBox("Use E"));
 
             FarmMenu.AddSeparator();
 
-            FarmMenu.AddLabel("Last Hit - Coming Soon");
+            FarmMenu.AddLabel("Last Hit");
             FarmMenu.Add("flUseQ", new CheckBox("Use Q"));
             FarmMenu.Add("flUseE", new CheckBox("Use E"));
             

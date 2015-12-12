@@ -19,7 +19,7 @@ namespace TheShadow
         public static void OnDraw(EventArgs args)
         {
 
-            var target = TargetSelector.GetTarget(MainShadow._R.Range + 350, EloBuddy.DamageType.Physical);
+            var target = TargetSelector.GetTarget(MainShadow._R.Range + 350, DamageType.Physical);
 
             if (MainShadow.DrawMenu["drawQ"].Cast<CheckBox>().CurrentValue == true)
             {

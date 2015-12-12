@@ -651,7 +651,8 @@ namespace Evade
             //Flash
             if (ObjectManager.Player.GetSpellSlotFromName("summonerflash") != SpellSlot.Unknown)
             {
-                spell = new BlinkData("Flash", ObjectManager.Player.GetSpellSlotFromName("SummonerFlash"), 400, 100, 5, true);
+                spell = new BlinkData("Flash", ObjectManager.Player.GetSpellSlotFromName("summonerflash"), 400, 100, 5,
+                    true);
                 Spells.Add(spell);
             }
 
