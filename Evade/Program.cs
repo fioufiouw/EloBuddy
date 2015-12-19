@@ -114,12 +114,6 @@ namespace Evade
 
         private static void Main(string[] args)
         {
-
-            if (Game.Mode == GameMode.Running)
-            {
-                Game_OnGameStart(new EventArgs());
-            }
-           
             Loading.OnLoadingComplete += Game_OnGameStart;
         }
 
@@ -127,7 +121,10 @@ namespace Evade
         private static void Game_OnGameStart(EventArgs args)
         {
             PlayerChampionName = ObjectManager.Player.ChampionName;
-            
+
+            //Create the menu to allow the user to change the config.
+            Config.CreateMenu();
+
             //Add the game events.
             Game.OnUpdate += Game_OnOnGameUpdate;
             Player.OnIssueOrder += ObjAiHeroOnOnIssueOrder;
@@ -144,13 +141,11 @@ namespace Evade
 
             DetectedSkillshots.OnAdd += DetectedSkillshots_OnAdd;
 
-            //Create the menu to allow the user to change the config.
-            Config.CreateMenu();
-
             //Initialze the collision
             Collision.Init();
 
-            Chat.Print("Evade Loaded");
+            Chat.Print("Evade Loaded", Color.Green);
+            Console.WriteLine("Evade:: Evade Loaded");
             
             if (Config.PrintSpellData)
             {

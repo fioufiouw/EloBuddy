@@ -57,14 +57,13 @@ namespace Evade
 
         public static void CreateMenu()
         {
-            try
+            Menu = MainMenu.AddMenu("Evade", "evade");
+
+            if (Menu == null)
             {
-                Menu = MainMenu.AddMenu("Evade", "Evade");
-                //Menu = MainMenu.AddMenu("Hellow", "hellow");
-            }
-            catch (NullReferenceException)
-            {
-                Chat.Print("ex1 - cant load...");
+                Chat.Print("LOAD FAILED", Color.Red);
+                Console.WriteLine("Evade:: LOAD FAILED");
+                throw new NullReferenceException("Menu NullReferenceException");
             }
 
             //Create the evade spells submenus.
