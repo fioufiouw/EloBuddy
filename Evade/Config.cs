@@ -32,10 +32,24 @@ namespace Evade
     {
         public const bool PrintSpellData = false;
         public const bool TestOnAllies = false;
-        public const int SkillShotsExtraRadius = 9;
-        public const int SkillShotsExtraRange = 20;
+        public static int SkillShotsExtraRadius
+        {
+            get { return 9 + humanizer["ExtraEvadeRange"].Cast<Slider>().CurrentValue; }
+        }
+        public static int SkillShotsExtraRange
+        {
+            get { return 20 + humanizer["ExtraEvadeRange"].Cast<Slider>().CurrentValue; }
+        }
         public const int GridSize = 10;
-        public const int ExtraEvadeDistance = 15;
+        public static int ExtraEvadeDistance
+        {
+            get { return 15 + humanizer["ExtraEvadeRange"].Cast<Slider>().CurrentValue; }
+        }
+
+        public static int ActivationDelay
+        {
+            get { return 0; /*return humanizer["ActivationDelay"].Cast<Slider>().CurrentValue;*/ }
+        }
         public const int PathFindingDistance = 60;
         public const int PathFindingDistance2 = 35;
 
@@ -52,7 +66,7 @@ namespace Evade
         public const int EvadePointChangeInterval = 300;
         public static int LastEvadePointChangeT = 0;
 
-        public static Menu Menu, evadeSpells, skillShots, shielding, collision, drawings, misc;
+        public static Menu Menu, evadeSpells, skillShots, shielding, collision, drawings, misc, humanizer;
         public static Color EnabledColor, DisabledColor, MissileColor;
 
         public static void CreateMenu()
@@ -71,8 +85,15 @@ namespace Evade
             foreach (var spell in EvadeSpellDatabase.Spells)
             {
                 evadeSpells.AddGroupLabel(spell.Name);
-            
-                evadeSpells.Add("DangerLevel" + spell.Name, new Slider("Danger level", 5, 1));
+
+                try
+                {
+                    evadeSpells.Add("DangerLevel" + spell.Name, new Slider("Danger level", spell._dangerLevel, 1, 5));
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
 
                 if (spell.IsTargetted && spell.ValidTargets.Contains(SpellValidTargets.AllyWards))
                 {
@@ -177,6 +198,11 @@ namespace Evade
 
             drawings.Add("EnableDrawings", new CheckBox("Enabled"));
             drawings.Add("ShowEvadeStatus", new CheckBox("Draw Evade Status"));
+
+            humanizer = Menu.AddSubMenu("Humanizer");
+
+            //humanizer.Add("ActivationDelay", new Slider("Activation Delay"));
+            humanizer.Add("ExtraEvadeRange", new Slider("Extra Evade Range"));
 
             misc = Menu.AddSubMenu("Misc", "Misc");
             misc.AddStringList("BlockSpells", "Block spells while evading", new[] { "No", "Only dangerous", "Always" }, 1);
