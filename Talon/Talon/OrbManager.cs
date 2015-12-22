@@ -371,7 +371,7 @@ namespace Talon
                     {
                         if (Program._W.IsInRange(minion) && Program._W.IsReady())
                         {
-                            if (Orbwalker.LasthitableMinions.Contains(minion))
+                            if (Orbwalker.LasthittableMinions.Contains(minion))
                             {
                                 _ChoiceW = 3;
                             }
