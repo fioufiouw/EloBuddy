@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8BE13D2D-0094-4542-83ED-A6A24D8EB53F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BuddyAIO</RootNamespace>
+    <AssemblyName>BuddyAIO</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EloBuddy">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\EloBuddy.dll</HintPath>
+    </Reference>
+    <Reference Include="EloBuddy.SDK">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\EloBuddy.SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\EloBuddy\System\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Bootstrap\BAIO.cs" />
+    <Compile Include="Bootstrap\BAIOBootstrap.cs" />
+    <Compile Include="Bootstrap\VersionChecker.cs" />
+    <Compile Include="Champions\ChampionHelper.cs" />
+    <Compile Include="Champions\ChampionIndex.cs" />
+    <Compile Include="Champions\Katarina\Index.cs" />
+    <Compile Include="Champions\Katarina\Katarina.cs" />
+    <Compile Include="Champions\Katarina\MenuIndex.cs" />
+    <Compile Include="Champions\Katarina\Modules\Misc\AutoW.cs" />
+    <Compile Include="Champions\Katarina\Modules\Misc\DamageIndicator.cs" />
+    <Compile Include="Champions\Katarina\Modules\Misc\DrawPredictedQ.cs" />
+    <Compile Include="Champions\Katarina\Modules\Misc\DrawSpells.cs" />
+    <Compile Include="Champions\Katarina\Modules\Misc\KillSteal.cs" />
+    <Compile Include="Champions\Katarina\Modules\Misc\UltManager.cs" />
+    <Compile Include="Champions\Katarina\Modules\Misc\WardJump.cs" />
+    <Compile Include="Champions\Katarina\Modules\States\Combo.cs" />
+    <Compile Include="Champions\Katarina\Modules\States\Harass.cs" />
+    <Compile Include="Champions\Katarina\Modules\States\LaneClear.cs" />
+    <Compile Include="Champions\Katarina\Modules\States\LastHit.cs" />
+    <Compile Include="Champions\Katarina\Spells\Spells.cs" />
+    <Compile Include="Champions\Katarina\Spells\SpellsGet.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Champions\Selector.cs" />
+    <Compile Include="Utility\Extensions.cs" />
+    <Compile Include="Utility\Config\MenuExtensions.cs" />
+    <Compile Include="Utility\Config\MenuGenerator.cs" />
+    <Compile Include="Utility\Damage.cs" />
+    <Compile Include="Utility\Target.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
