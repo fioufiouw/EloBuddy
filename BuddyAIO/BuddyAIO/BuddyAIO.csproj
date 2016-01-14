@@ -80,6 +80,11 @@
     <Compile Include="Champions\Katarina\Modules\States\LastHit.cs" />
     <Compile Include="Champions\Katarina\Spells\Spells.cs" />
     <Compile Include="Champions\Katarina\Spells\SpellsGet.cs" />
+    <Compile Include="Champions\Zed\Index.cs" />
+    <Compile Include="Champions\Zed\MenuIndex.cs" />
+    <Compile Include="Champions\Zed\Spells\SpellsGet.cs" />
+    <Compile Include="Champions\Zed\Spells\Spells.cs" />
+    <Compile Include="Champions\Zed\Zed.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Champions\Selector.cs" />
@@ -92,7 +97,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Champions\Zed\Modules\Misc\" />
+    <Folder Include="Champions\Zed\Modules\States\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

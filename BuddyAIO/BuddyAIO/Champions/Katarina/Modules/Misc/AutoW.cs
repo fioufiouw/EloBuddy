@@ -14,20 +14,16 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
     {
         public EloBuddy.SDK.Menu.Menu mMenu;
         private bool Wardjump;
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             mMenu = Menu.AddSubMenu("Misc", "misc");
             mMenu.AddCheckBox("autow", "Auto W");
         }
-        void IModule.OnLoad()
-        {
-
-        }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.OnUpdate;
         }
-        bool IModule.ShouldDo()
+        public new bool ShouldDo()
         {
             MenuIndex.Misc misc = new MenuIndex.Misc();
             var x = misc.AutoW;
@@ -37,7 +33,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
             return false;
         }
 
-        void IModule.Do()
+        public override void Do()
         {
             MenuIndex.NonMenu nonmenu = new MenuIndex.NonMenu();
             foreach (var hero in EntityManager.Heroes.Enemies.Where(h => Spells.W.IsInRange(h)))

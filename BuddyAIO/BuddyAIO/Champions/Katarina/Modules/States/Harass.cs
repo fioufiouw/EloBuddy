@@ -17,25 +17,20 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
         {
             get { return Utility.Target.GetTarget(Orbwalker.ActiveModes.Harass, DamageType.Magical); }
         }
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             mMenu = Menu.AddSubMenu("Harass", "harass");
             mMenu.AddCheckBox("useq", "Use Q");
             mMenu.AddCheckBox("usew", "Use W");
             mMenu.AddCheckBox("usee", "Use E", false);
         }
-
-        void IModule.OnLoad()
-        {
-
-        }
-        bool IModule.ShouldDo()
+        public new bool ShouldDo()
         {
             if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Harass)
                 return true;
             return false;
         }
-        void IModule.Do()
+        public override void Do()
         {
             MenuIndex.Harass harass = new MenuIndex.Harass();
 
@@ -55,8 +50,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
                 Spells.E.Cast(Target);
             }
         }
-
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.OnUpdate;
         }

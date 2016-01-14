@@ -15,21 +15,17 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
     {
         public EloBuddy.SDK.Menu.Menu mMenu;
         private bool Wardjump;
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             mMenu = Menu.AddSubMenu("Flee", "flee");
             mMenu.AddCheckBox("usee", "Use E");
             mMenu.AddCheckBox("wardjump", "Wardjump");
         }
-        void IModule.OnLoad()
-        {
-
-        }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.OnUpdate;
         }
-        bool IModule.ShouldDo()
+        public new bool ShouldDo()
         {
             MenuIndex.Flee flee = new MenuIndex.Flee();
             if (flee.UseE && Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Flee)
@@ -43,7 +39,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
             return false;
         }
 
-        void IModule.Do()
+        public override void Do()
         {
             foreach (var minion in EntityManager.MinionsAndMonsters.Get(EntityManager.MinionsAndMonsters.EntityType.Both, EntityManager.UnitTeam.Both
                     , Player.Instance.Position, Spells.E.Range))

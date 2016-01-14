@@ -13,7 +13,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
     class LastHit : IModule
     {
         public EloBuddy.SDK.Menu.Menu mMenu;
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             mMenu = Menu.AddSubMenu("LastHit", "lasthit");
             mMenu.AddCheckBox("useq", "Use Q");
@@ -23,16 +23,11 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
             mMenu.AddLabel("Only casts spells if minion is unkillable by AA");
             mMenu.AddCheckBox("smartfarm", "Smart Farm");
         }
-
-        void IModule.OnLoad()
-        {
-
-        }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.OnUpdate;
         }
-        bool IModule.ShouldDo()
+        public new bool ShouldDo()
         {
             if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.LastHit)
             {
@@ -40,7 +35,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
             }
             return false;
         }
-        void IModule.Do()
+        public override void Do()
         {
             MenuIndex.LastHit lasthit = new MenuIndex.LastHit();
             foreach (var minion in EntityManager.MinionsAndMonsters.EnemyMinions.Where(m => Player.Instance.IsInRange(m, 900)))

@@ -11,15 +11,12 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
     class UltManager : IModule
     {
         public bool IsUlting;
-        void IModule.OnLoad()
-        {
 
-        }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.OnUpdate;
         }
-        bool IModule.ShouldDo()
+        public new bool ShouldDo()
         {
             if (Player.Instance.HasBuff("katarinarsound"))
             {
@@ -32,13 +29,13 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
 
             return false;
         }
-        void IModule.Do()
+        public override void Do()
         {
             Orbwalker.DisableMovement = true;
             Orbwalker.DisableAttacking = true;
         }
 
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
 
         }

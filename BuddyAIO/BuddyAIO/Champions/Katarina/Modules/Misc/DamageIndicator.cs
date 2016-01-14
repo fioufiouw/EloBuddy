@@ -31,7 +31,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
             set { _drawingColor = System.Drawing.Color.FromArgb(170, value); }
         }
 
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             DrawSpells drawspells = new DrawSpells();
             var mMenu = drawspells.mMenu;
@@ -39,7 +39,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
             mMenu.AddCheckBox("drawdamageindicator", "Draw Damage Indicator");
             mMenu.AddCheckBox("drawdamageindicator", "Draw Damage Indicator Percentage");
         }
-        void IModule.OnLoad()
+        public override void OnLoad()
         {
             MenuIndex.Drawings drawings = new MenuIndex.Drawings();
 
@@ -91,14 +91,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
                 }
             };
         }
-        bool IModule.ShouldDo()
-        {
-            return false;
-        }
-        void IModule.Do()
-        {
-        }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.Other;
         }

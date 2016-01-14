@@ -13,7 +13,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
     class LaneClear : IModule
     {
         public EloBuddy.SDK.Menu.Menu mMenu;
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             mMenu = Menu.AddSubMenu("Lane Clear", "laneclear");
             mMenu.AddCheckBox("useq", "Use Q");
@@ -22,15 +22,11 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
             mMenu.AddCheckBox("dangerlow", "Don't hit dangerously low minions");
         }
 
-        void IModule.OnLoad()
-        {
-
-        }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.OnUpdate;
         }
-        bool IModule.ShouldDo()
+        public new bool ShouldDo()
         {
             if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.LaneClear )
             {
@@ -38,7 +34,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
             }
             return false;
         }
-        void IModule.Do()
+        public override void Do()
         {
             MenuIndex.LaneClear laneclear = new MenuIndex.LaneClear();
             foreach (var minion in EntityManager.MinionsAndMonsters.EnemyMinions.Where(m => Player.Instance.IsInRange(m, 900)))

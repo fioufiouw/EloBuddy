@@ -17,7 +17,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
             get { return Utility.Target.GetTarget(Orbwalker.ActiveModes.Combo, DamageType.Magical); }
         }
         public EloBuddy.SDK.Menu.Menu mMenu;
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             mMenu = Menu.AddSubMenu("Combo", "combo");
             mMenu.AddStringList("combomode", "Mode: ", new string[3] { "QEWR", "EQWR", "ERWQ"}, 1);
@@ -25,21 +25,21 @@ namespace BuddyAIO.Champions.Katarina.Modules.States
             mMenu.AddCheckBox("usew", "Use W");
             mMenu.AddCheckBox("usee", "Use E", false);
         }
-        void IModule.OnLoad()
+        public override void OnLoad()
         {
 
         }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.OnUpdate;
         }
-        bool IModule.ShouldDo()
+        public new bool ShouldDo()
         {
             if (Orbwalker.ActiveModesFlags == Orbwalker.ActiveModes.Combo)
                 return true;
             return false;
         }
-        void IModule.Do()
+        public override void Do()
         {
             MenuIndex.Combo combo = new MenuIndex.Combo();
 

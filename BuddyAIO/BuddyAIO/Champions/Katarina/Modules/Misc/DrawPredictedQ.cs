@@ -14,14 +14,14 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
 {
     class DrawPredictedQ : IModule
     {
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             DrawSpells drawspells = new DrawSpells();
             var mMenu = drawspells.mMenu;
             mMenu.AddCheckBox("drawpredictedq", "Draw Predicted Q");
 
         }
-        void IModule.OnLoad()
+        public override void OnLoad()
         {
             MenuIndex.Drawings drawings = new MenuIndex.Drawings();
             if (!drawings.DrawPredictedQ)
@@ -36,18 +36,9 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
                 Drawing.DrawLine(obj.OrderBy(o => o.Distance(cursorpos)).ElementAtOrDefault(3).Position.WorldToScreen(), obj.OrderBy(o => o.Distance(cursorpos)).ElementAtOrDefault(4).Position.WorldToScreen(), 1, Color.White);
             };
         }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.Other;
-        }
-        bool IModule.ShouldDo()
-        {
-            return false;
-        }
-
-        void IModule.Do()
-        {
-            
         }
     }
 }

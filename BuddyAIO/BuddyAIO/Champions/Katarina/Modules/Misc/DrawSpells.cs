@@ -17,7 +17,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
         public EloBuddy.SDK.Menu.Menu mMenu;
         private bool HasFlash = false;
         private bool HasIgnite = false;
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             mMenu = Menu.AddSubMenu("Drawings", "drawings");
             mMenu.AddCheckBox("drawq", "Draw Q");
@@ -30,7 +30,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
                 mMenu.AddCheckBox("drawignite", "Draw Ignite");
 
         }
-        void IModule.OnLoad()
+        public override void OnLoad()
         {
             var flashslot = GetFlashSpellSlot();
             var igniteslot = GetIgniteSpellSlot();
@@ -119,18 +119,9 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
                 #endregion
             };
         }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.Other;
-        }
-        bool IModule.ShouldDo()
-        {
-            return false;
-        }
-
-        void IModule.Do()
-        {
-            
         }
 
         private static SpellSlot GetFlashSpellSlot()

@@ -7,21 +7,21 @@ using EloBuddy.SDK;
 
 namespace BuddyAIO.Champions
 {
-    public interface IChampion
+    public abstract class IChampion
     {
-        void OnLoad();
-        void OnUpdate();
-        void AfterAA();
-        EloBuddy.Champion Hero();
+        public abstract void OnLoad();
+        public abstract void OnUpdate();
+        public virtual void AfterAA() { }
+        public abstract EloBuddy.Champion Hero();
     }
 
-    public interface IModule
+    public abstract class IModule
     {
-        void OnLoad();
-        bool ShouldDo();
-        void Do();
-        ModuleType GetModuleType();
-        void MenuCreate();
+        public virtual void OnLoad() { }
+        public virtual bool ShouldDo { get; }
+        public virtual void Do() { }
+        public abstract ModuleType GetModuleType();
+        public virtual void MenuCreate() { }
     }
 
     public enum ModuleType

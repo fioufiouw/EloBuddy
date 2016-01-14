@@ -14,7 +14,7 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
     {
         public EloBuddy.SDK.Menu.Menu mMenu;
         private bool HasIgnite = false;
-        void IModule.MenuCreate()
+        public override void MenuCreate()
         {
             mMenu = Menu.AddSubMenu("KillSteal", "killsteal");
             mMenu.AddCheckBox("Use Q", "useq");
@@ -23,20 +23,16 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
             mMenu.AddCheckBox("WardJump", "wardjump");
             mMenu.AddCheckBox("SmartKS", "smartks");
         }
-        void IModule.OnLoad()
-        {
-
-        }
-        ModuleType IModule.GetModuleType()
+        public override ModuleType GetModuleType()
         {
             return ModuleType.OnUpdate;
         }
-        bool IModule.ShouldDo()
+        public new bool ShouldDo()
         {
             return true;
         }
 
-        void IModule.Do()
+        public override void Do()
         {
             foreach (var hero in EntityManager.Heroes.Enemies.Where(h => Player.Instance.IsInRange(h, 1200)).OrderBy(h => h.Health))
             {
