@@ -41,42 +41,69 @@ namespace BuddyAIO.Champions
 
         private static void ChampionIndex()
         {
-            #region Load
-            //We don't need to use the OnLoad event because we are already in the loading stage
-            foreach (var champion in Champions.ChampionIndex.ChampList)
+            try
             {
-                if (champion.Hero() == Player.Instance.Hero)
+                #region Load
+                //We don't need to use the OnLoad event because we are already in the loading stage
+                foreach (var champion in Champions.ChampionIndex.ChampList)
                 {
-                    champion.OnLoad();
+
+                    if (champion.Hero() == Player.Instance.Hero)
+                    {
+                        champion.OnLoad();
+                    }
                 }
+                #endregion
             }
-            #endregion
-
-            #region Update
-            Game.OnUpdate += delegate
+            catch
             {
-                foreach (var champion in Champions.ChampionIndex.ChampList)
-                {
-                    if (champion.Hero() == Player.Instance.Hero)
-                    {
-                        champion.OnUpdate();
-                    }
-                }
-            };
-            #endregion
-
-            #region AfterAA
-            Orbwalker.OnPostAttack += delegate
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[CHAMPIONINDEX]");
+                
+            }
+            try
             {
-                foreach (var champion in Champions.ChampionIndex.ChampList)
+                #region Update
+                Game.OnUpdate += delegate
                 {
-                    if (champion.Hero() == Player.Instance.Hero)
+                    foreach (var champion in Champions.ChampionIndex.ChampList)
                     {
-                        champion.AfterAA();
+                        if (champion.Hero() == Player.Instance.Hero)
+                        {
+                            champion.OnUpdate();
+                        }
                     }
-                }
-            };
-            #endregion
+                };
+                #endregion
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[CHAMPIONINDEX.UPDATE]");
+                
+            }
+
+            try
+            {
+                #region AfterAA
+                Orbwalker.OnPostAttack += delegate
+                {
+                    foreach (var champion in Champions.ChampionIndex.ChampList)
+                    {
+                        if (champion.Hero() == Player.Instance.Hero)
+                        {
+                            champion.AfterAA();
+                        }
+                    }
+                };
+                #endregion
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[CHAMPIONINDEX.AFTERAA]");
+                
+            }
         }
     }
 }

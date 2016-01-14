@@ -12,7 +12,7 @@ namespace BuddyAIO.Champions.Zed
     {
         public override Champion Hero()
         {
-            return Champion.Katarina;
+            return Champion.Zed;
         }
 
         public override void OnLoad()

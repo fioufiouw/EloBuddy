@@ -16,16 +16,27 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
     {
         public override void MenuCreate()
         {
-            DrawSpells drawspells = new DrawSpells();
-            var mMenu = drawspells.mMenu;
-            mMenu.AddCheckBox("drawpredictedq", "Draw Predicted Q");
+            try
+            {
+                DrawSpells drawspells = new DrawSpells();
+                var mMenu = drawspells.mMenu;
+                mMenu.AddCheckBox("drawpredictedq", "Draw Predicted Q");
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[KATARINA.DRAWPREDICTEDQ.MENUCREATE]");
+                
+            }
 
         }
         public override void OnLoad()
         {
-            MenuIndex.Drawings drawings = new MenuIndex.Drawings();
-            if (!drawings.DrawPredictedQ)
-                return;
+            try
+            {
+                MenuIndex.Drawings drawings = new MenuIndex.Drawings();
+                if (!drawings.DrawPredictedQ)
+                    return;
                 Drawing.OnDraw += delegate
             {
                 var cursorpos = Game.CursorPos;
@@ -35,6 +46,13 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
                 Drawing.DrawLine(obj.OrderBy(o => o.Distance(cursorpos)).ElementAtOrDefault(2).Position.WorldToScreen(), obj.OrderBy(o => o.Distance(cursorpos)).ElementAtOrDefault(3).Position.WorldToScreen(), 1, Color.White);
                 Drawing.DrawLine(obj.OrderBy(o => o.Distance(cursorpos)).ElementAtOrDefault(3).Position.WorldToScreen(), obj.OrderBy(o => o.Distance(cursorpos)).ElementAtOrDefault(4).Position.WorldToScreen(), 1, Color.White);
             };
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[KATARINA.DRAWPREDICTEDQ.ONLOAD]");
+                
+            }
         }
         public override ModuleType GetModuleType()
         {

@@ -16,8 +16,17 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
         private bool Wardjump;
         public override void MenuCreate()
         {
-            mMenu = Menu.AddSubMenu("Misc", "misc");
-            mMenu.AddCheckBox("autow", "Auto W");
+            try
+            {
+                mMenu = Menu.AddSubMenu("Misc", "misc");
+                mMenu.AddCheckBox("autow", "Auto W");
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[KATARINA.AUTOW.MENUCREATE]");
+                
+            }
         }
         public override ModuleType GetModuleType()
         {
@@ -25,23 +34,42 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
         }
         public new bool ShouldDo()
         {
-            MenuIndex.Misc misc = new MenuIndex.Misc();
-            var x = misc.AutoW;
+            try
+            {
+                MenuIndex.Misc misc = new MenuIndex.Misc();
+                var x = misc.AutoW;
 
-            if (x)
-                return true;
-            return false;
+                if (x)
+                    return true;
+                return false;
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[KATARINA.AUTOW.SHOULDDO]");
+                Environment.Exit(1);
+                return false;
+            }
         }
 
         public override void Do()
         {
-            MenuIndex.NonMenu nonmenu = new MenuIndex.NonMenu();
-            foreach (var hero in EntityManager.Heroes.Enemies.Where(h => Spells.W.IsInRange(h)))
+            try
             {
-                if (hero.IsValid && hero != null && Spells.W.IsReady() && !nonmenu.IsUlting)
+                MenuIndex.NonMenu nonmenu = new MenuIndex.NonMenu();
+                foreach (var hero in EntityManager.Heroes.Enemies.Where(h => Spells.W.IsInRange(h)))
                 {
-                    Spells.W.Cast();
+                    if (hero.IsValid && hero != null && Spells.W.IsReady() && !nonmenu.IsUlting)
+                    {
+                        Spells.W.Cast();
+                    }
                 }
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[KATARINA.AUTOW.DO]");
+                
             }
         }
     }

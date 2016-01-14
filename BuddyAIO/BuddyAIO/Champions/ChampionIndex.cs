@@ -11,7 +11,8 @@ namespace BuddyAIO.Champions
     {
         public static List<IChampion> ChampList = new List<IChampion>()
         {
-            new Katarina.Katarina()
+            new Katarina.Katarina(),
+            new Zed.Zed()
         };
     }
 }

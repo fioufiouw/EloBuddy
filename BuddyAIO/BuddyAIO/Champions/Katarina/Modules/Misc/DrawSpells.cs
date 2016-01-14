@@ -19,15 +19,24 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
         private bool HasIgnite = false;
         public override void MenuCreate()
         {
-            mMenu = Menu.AddSubMenu("Drawings", "drawings");
-            mMenu.AddCheckBox("drawq", "Draw Q");
-            mMenu.AddCheckBox("draww", "Draw W");
-            mMenu.AddCheckBox("drawe", "Draw E");
-            mMenu.AddCheckBox("drawr", "Draw R");
-            if (HasFlash == true)
-                mMenu.AddCheckBox("drawflash", "Draw Flash");
-            if (HasIgnite == true)
-                mMenu.AddCheckBox("drawignite", "Draw Ignite");
+            try
+            {
+                mMenu = Menu.AddSubMenu("Drawings", "drawings");
+                mMenu.AddCheckBox("drawq", "Draw Q");
+                mMenu.AddCheckBox("draww", "Draw W");
+                mMenu.AddCheckBox("drawe", "Draw E");
+                mMenu.AddCheckBox("drawr", "Draw R");
+                if (HasFlash == true)
+                    mMenu.AddCheckBox("drawflash", "Draw Flash");
+                if (HasIgnite == true)
+                    mMenu.AddCheckBox("drawignite", "Draw Ignite");
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[KATARINA.DRAWSPELLS.MENUCREATE]");
+                
+            }
 
         }
         public override void OnLoad()
@@ -35,10 +44,19 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
             var flashslot = GetFlashSpellSlot();
             var igniteslot = GetIgniteSpellSlot();
 
-            if (flashslot != SpellSlot.Unknown && Player.CanUseSpell(flashslot) == SpellState.Ready)
-                HasFlash = true;
-            if (igniteslot != SpellSlot.Unknown && Player.CanUseSpell(igniteslot) == SpellState.Ready)
-                HasIgnite = true;
+            try
+            {
+                if (flashslot != SpellSlot.Unknown && Player.CanUseSpell(flashslot) == SpellState.Ready)
+                    HasFlash = true;
+                if (igniteslot != SpellSlot.Unknown && Player.CanUseSpell(igniteslot) == SpellState.Ready)
+                    HasIgnite = true;
+            }
+            catch
+            {
+                Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                Console.WriteLine("Exception caught - Code[KATARINA.DRAWSPELLS.ONLOAD.HASCHECK]");
+                
+            }
 
             MenuIndex.Drawings drawings = new MenuIndex.Drawings();
 
@@ -47,17 +65,26 @@ namespace BuddyAIO.Champions.Katarina.Modules.Misc
 
             Drawing.OnDraw += delegate
             {
-                #region Q
-                if (drawings.DrawQ)
+                try
                 {
-                    if (Spells.Q.IsReady())
-                        new Circle() { BorderWidth = 2, Color = Color.Green, Radius = Spells.Q.Range }.Draw(Player.Instance.Position);
-                    if (Spells.Q.IsOnCooldown)
-                        new Circle() { BorderWidth = 2, Color = Color.Orange, Radius = Spells.Q.Range }.Draw(Player.Instance.Position);
-                    if (!Spells.Q.IsLearned)
-                        new Circle() { BorderWidth = 2, Color = Color.Red, Radius = Spells.Q.Range }.Draw(Player.Instance.Position);
+                    #region Q
+                    if (drawings.DrawQ)
+                    {
+                        if (Spells.Q.IsReady())
+                            new Circle() { BorderWidth = 2, Color = Color.Green, Radius = Spells.Q.Range }.Draw(Player.Instance.Position);
+                        if (Spells.Q.IsOnCooldown)
+                            new Circle() { BorderWidth = 2, Color = Color.Orange, Radius = Spells.Q.Range }.Draw(Player.Instance.Position);
+                        if (!Spells.Q.IsLearned)
+                            new Circle() { BorderWidth = 2, Color = Color.Red, Radius = Spells.Q.Range }.Draw(Player.Instance.Position);
+                    }
+                    #endregion
                 }
-                #endregion
+                catch
+                {
+                    Chat.Print("BuddyAIO:: An error has occured!", System.Drawing.Color.Red);
+                    Console.WriteLine("Exception caught - Code[KATARINA.DRAWSPELLS.ONLOAD.ONDRAW.QDRAW]");
+                    
+                }
 
                 #region W
                 if (drawings.DrawW)
