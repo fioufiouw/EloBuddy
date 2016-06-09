@@ -1,5 +1,6 @@
 ﻿using System;
 using EloBuddy;
+using EloBuddy.SDK;
 using EloBuddy.SDK.Events;
 
 namespace RageBuddy
@@ -13,7 +14,8 @@ namespace RageBuddy
 
         private static void Loading_OnLoadingComplete(EventArgs args)
         {
-            Chat.Say("/mute all");
+            Core.DelayAction(() => Chat.Say("/mute all"), new Random(15789472).Next(1000, 10000));
+            
 
             Chat.OnInput += Chat_OnInput;
             Player.OnEmote += Player_OnEmote;
